@@ -55,3 +55,49 @@ go around the world slaying progressively harder creatures and level up your cha
 | Cross-Platform Compatibility | Ensure the game runs smoothly on any OS (Windows, macOS, Linux).                          |
 | Low System Requirements      | Use lightweight assets and optimized code to support older or low-end hardware.           |
 | Fast Load Times              | Minimize asset sizes and external dependencies to reduce loading time on all connections. |
+
+---
+
+# Game Flow
+```mermaid
+flowchart TD
+    %% Nodes
+    GameStart([Game Start])
+    MainMenu{Main Menu}
+    ResetData((Reset Data))
+    GetLevel[Get Current Level]
+    LevelExists{Level Exists}
+    PlayoutLevel[Playout Level]
+    SimpleEncounter[Simple Encounter]
+    VisitAdventure[Visit Adventure PoI]
+    ComplexEncounter[Complex Encounter]
+    VisitGeneral[Visit General PoI]
+    IncrementLevel[Increment Level]
+    WinGame([Win Game])
+
+    %% Relationships
+    GameStart --> MainMenu
+    MainMenu -->|Create New Game| ResetData
+    MainMenu -->|Load Existing Game| GetLevel
+    ResetData --> GetLevel
+
+    %% Game Loop
+    GetLevel --> LevelExists
+    LevelExists -->|true| PlayoutLevel
+    LevelExists -->|false| WinGame
+    IncrementLevel --> GetLevel
+
+    %% Playout Level Flow
+    PlayoutLevel --> SimpleEncounter
+    SimpleEncounter --> VisitAdventure
+    VisitAdventure --> ComplexEncounter
+    ComplexEncounter --> VisitGeneral
+    VisitGeneral --> IncrementLevel
+
+    %% Styling
+    style GameStart fill:#f9f,stroke:#333,stroke-width:2px
+    style WinGame fill:#f9f,stroke:#333,stroke-width:2px
+    style MainMenu fill:#ff9,stroke:#333,stroke-width:2px
+    style ResetData fill:#ccf,stroke:#333,stroke-width:2px
+    style PlayoutLevel fill:#cfc,stroke:#333,stroke-width:2px
+```
