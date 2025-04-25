@@ -50,6 +50,7 @@ Choose your character, you get a base set of stats that you can upgrade later on
         return character_select("(You did not enter a valid option!)")
 
 def main():
+    shared.test_mode = False
     ConnectionManager().initialize()
     start_result: (int, str) = menu("Welcome to The Parade!", "Start New Game", "Load From Save", "Quit")
     if start_result[0] == 1:
@@ -118,7 +119,7 @@ def start_game(player: Player):
 
 @atexit.register
 def on_exit():
-    if shared.exited: return
+    if shared.exited or shared.test_mode: return
     shared.exited = True
     print("Game Closing!")
     if shared.current_player is not None:
