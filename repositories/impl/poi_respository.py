@@ -11,4 +11,5 @@ class PoiRepository(ImmutableRepository[int, Poi]):
         return cls._instance
 
     def __init__(self):
+        super(PoiRepository, self).__init__()
         pass

@@ -1,3 +1,13 @@
+questions have weight
+the higher the weight, the better the upgrade
+upgrade is chosen randomly
+upgrade can either be an item, or a stat boost
+interactions have 2 stages, the question and the fight
+if you have enough items/good enough stats to win the fight you progress
+if you have answered too many questions wrong, you will not be strong enough to win the fight, and will need to restart
+
+---
+
 # The Parade
 This is a silly little game made for my comp sci course.
 
@@ -33,9 +43,8 @@ go around the world slaying progressively harder creatures and level up your cha
 ---
 
 ## 2. Product Problem Statement
-**Challenges Addressed**:
 - **Hardware Requirements**: Many games have heavy hardware requirements, which many people cannot meet.
-- **Competitive Market**: The game industry is very competitive with most games needing backing of multi-million (if not -billion) dollar companies to gain traction.
+- **Must be educational**: 
 - **Skill Gap & Ceiling**: Games need to have a good balance between easy and challenging, and they need room for the player to practice and get better.
 
 ---
@@ -58,7 +67,31 @@ go around the world slaying progressively harder creatures and level up your cha
 
 ---
 
-# Game Flow
+## 5. Data Types
+1. I use `integer` to hold player stats. I use integers as I do not need floating point precision.
+2. I use `string` as identifiers. When identifying data its important that each ID is unique, which is why UUID's exist. I do not need that amount of uniqueness in a small single player game, so I have opted for strings.
+3. I use `boolean` to mark a question type as requiring an answer to be defined in the code for defining a question. This is used to verify code before it is an issue.
+
+---
+
+## 6. Data Structures
+1. I use `dict` aka `hash table` as the underlying data structure for my Repository data stores. Repositories need to hold key value pairs. Which is exactly what a dictionary does.
+2. I use `tuple` (a typed `array` with predefined length) to return 2 values from 1 method without needing a whole new object. It is a lightweight way to pass data around.
+
+---
+
+## 7. Data Dictionary
+| Variable     | Data Type | Format for display | Size in bytes | Size for display | Description                                                                                                                                | Example | Validation                      |
+|--------------|-----------|--------------------|---------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------------------|
+| identifier   | string    | XX..XX             | 5             | 5                | A primary key for each player saved in a database, there is only 1 player save per character, so the identifier is the character selected. | Roxy    | Must match a character          |
+| intelligence | integer   | NN..NN             | 4             | 1-3              | How intelligent the player is, used to help decide what questions they should be shown                                                     | 9       | Must be greater than 0          |
+| strength     | integer   | NN..NN             | 4             | 1-3              | How strong the player is, upgraded in gameplay to beat monsters                                                                            | 20      | Must be greater than 0          |
+| agility      | integer   | NN..NN             | 4             | 1-3              | How agile the player is, upgraded in gameplay to beat monsters                                                                             | 4       | Must be greater than 0          |
+| health       | float     | NN.NN              | 8             | 5                | How much health the player has.                                                                                                            | 12.50   | Must be between 20.00 and 00.00 |
+
+---
+
+# Game Flow Chart
 ```mermaid
 flowchart TD
     %% Nodes

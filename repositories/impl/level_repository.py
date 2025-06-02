@@ -12,5 +12,6 @@ class LevelRepository(ImmutableRepository[int, Level]):
         return cls._instance
 
     def __init__(self):
+        super(LevelRepository, self).__init__()
         self._register(Tutorial())
         self._register(LevelOne())

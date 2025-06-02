@@ -1,5 +1,7 @@
 import atexit
 
+from dotenv import load_dotenv
+
 import shared
 from models.characters import Character
 from models.entity.player import Player
@@ -129,6 +131,7 @@ def on_exit():
 
 
 if __name__ == '__main__':
+    load_dotenv()
     try:
         main()
     except KeyboardInterrupt:

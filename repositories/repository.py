@@ -31,7 +31,8 @@ class MutableRepository(Repository[T], ABC):
 K = TypeVar('K')
 
 class ImmutableRepository(Repository[Savable[K]], Generic[K, T]):
-    _data: dict[K, T] = {}
+    def __init__(self):
+        self._data: dict[K, T] = {}
 
     def _register(self, data: T):
         """Register an item to the repository"""

@@ -36,7 +36,7 @@ class Player(Entity, Savable[str], Storable):
     strength: Mapped[int] = mapped_column(nullable=False)
     agility: Mapped[int] = mapped_column(nullable=False)
 
-    health: Mapped[int] = mapped_column(nullable=False)
+    health: Mapped[float] = mapped_column(nullable=False)
     inventory_id: Mapped[int] = mapped_column(ForeignKey('inventories.identifier'), nullable=False)
     inventory: Mapped[Inventory] = relationship(
         "Inventory",
