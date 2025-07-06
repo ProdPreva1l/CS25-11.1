@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import override
 
 import shared
 from levels.stage import Stage
@@ -17,10 +18,19 @@ class Level(Savable[int], ABC):
     def save(self):
         raise NotImplementedError("Levels cannot be saved")
 
-class Staged(ABC):
-    _stages: dict[int, Stage] = {}
+class Staged(Level):
+    def __init__(self, identifier: int, name: str, *stages: Stage):
+        super().__init__(identifier, name)
+        self._stages: dict[int, Stage] = {}
 
-    def run_staged(self, player):
+        for stage in stages:
+            self._register_stage(stage)
+
+    @override
+    def run(self, player):
+        self._run_staged(player)
+
+    def _run_staged(self, player):
         """Run staged instead of just 1 part"""
         while not shared.exited:
             stage = self._stages.get(player.current_stage)

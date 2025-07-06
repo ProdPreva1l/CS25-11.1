@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
 
 class Stage(ABC):
-    def __init__(self, stage: int, level):
+    def __init__(self, stage: int):
         self.stage = stage
-        self._level = level
 
     @abstractmethod
     def run(self, player):

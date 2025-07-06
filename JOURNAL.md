@@ -1,4 +1,4 @@
-### 📅 Date: 2025-05-12 - Josh
+### 2025-05-12 - Josh
 
 This is the first entry. I originally started this project 6 years ago as a side project. So we skip some stuff in our entries.
 
@@ -24,7 +24,7 @@ It’s been refreshing to see how far I’ve come since I originally wrote this.
 
 ---
 
-### 📅 Date: 2025-05-15 - Josh
+### 2025-05-15 - Josh
 
 Made significant progress implementing the question interaction system and integrating it with stat progression.
 
@@ -48,7 +48,7 @@ The randomness of upgrades adds an interesting layer of replayability. Balancing
 
 ---
 
-### 📅 Date: 2025-05-19 - Josh
+### 2025-05-19 - Josh
 
 The core game loop is now complete. I spent this week focusing on polish, fixing edge cases, and making the flow from question to fight feel seamless.
 
@@ -73,7 +73,7 @@ Seeing the full cycle—question → upgrade → fight → win/lose—is satisfy
 
 ---
 
-### 📅 Date: 2025-05-22 - Josh
+### 2025-05-22 - Josh
 
 Focused on building out content and tying in the final parts of the gameplay experience.
 
@@ -83,9 +83,8 @@ Focused on building out content and tying in the final parts of the gameplay exp
 * Completed draft version of the in-game tutorial and help text.
 * Noticed question balance was off—easy questions gave too strong upgrades.
 * Addressed this by adjusting the weight curve and making high-weight upgrades rarer.
-* Planned to add polish to the UI/UX (text formatting, spacing, readability).
 * Intended to create final version of the documentation and walkthrough.
-* Considered adding a basic save/load mechanic for fun (non-essential).
+* Added a basic save/load mechanic.
 
 The modular design really paid off. Adding new content now takes minutes. I'm glad I emphasised extensibility from the start.
 
@@ -98,7 +97,7 @@ The modular design really paid off. Adding new content now takes minutes. I'm gl
 
 ---
 
-### 📅 Date: 2025-05-26 - Josh
+### 2025-05-26 - Josh
 
 This week I worked on polishing and final touches before considering the game “ready” for submission.
 
@@ -117,7 +116,7 @@ This week I worked on polishing and final touches before considering the game �
 
 ---
 
-### 📅 Date: 2025-05-29 - Josh
+### 2025-05-29 - Josh
 
 Final round of testing, documentation, and preparing everything for submission.
 

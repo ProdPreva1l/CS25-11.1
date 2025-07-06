@@ -1,23 +1,46 @@
 from typing import override
 
-from levels.level import Level, Staged
 from levels.stage import Stage
+from models.items.swords import BasicSword
+from models.stats import Stat
+from utils.utils import prompt_question, speak
 
 
-class LevelOne(Level, Staged):
-    def __init__(self):
-        super().__init__(1, "The Forest")
-        for s in [
-            LevelOne.StageOne(self)
-        ]: self._register_stage(s)
+class LevelOne:
+    _loot_pool = [
+        BasicSword()
+    ]
 
-    @override
-    def run(self, player):
-        self.run_staged(player)
+    _upgrade_pool = {
+        Stat.AGILITY: 1,
+        Stat.STRENGTH: 1,
+    }
+
+    def upgrade(self):
+        pass
 
     class StageOne(Stage):
-        def __init__(self, level: Level):
-            super().__init__(1, level)
+        def __init__(self):
+            super().__init__(1)
+
+        @override
+        def run(self, player):
+            correct = prompt_question()
+            if not correct:
+                player.next_stage()
+
+
+    class StageTwo(Stage):
+        def __init__(self):
+            super().__init__(2)
+
+        @override
+        def run(self, player):
+            pass
+
+    class StageThree(Stage):
+        def __init__(self):
+            super().__init__(3)
 
         @override
         def run(self, player):

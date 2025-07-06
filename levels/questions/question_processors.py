@@ -37,8 +37,11 @@ class AIHandler:
         return cls._instance
 
     def __init__(self):
+        api_key = os.getenv("AI_API_KEY")
+        if api_key == "DISABLED":
+            return
         self.ai_client = OpenAI(
-            api_key = os.getenv("AI_API_KEY"),
+            api_key = api_key,
             base_url = os.getenv("AI_BASE_URL"),
         )
         thread = threading.Thread(name='ai-rate-limit-checking-thread', target=self._check_is_rate_limited)
@@ -47,6 +50,9 @@ class AIHandler:
 
     def _check_is_rate_limited(self):
         while True:
+            if os.getenv("AI_API_KEY") == "DISABLED":
+                self._rate_limited = True
+                continue
             try:
                 self.ai_client.chat.completions.create(
                     model = os.getenv("AI_MODEL"),

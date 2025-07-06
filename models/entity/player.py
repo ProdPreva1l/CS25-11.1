@@ -7,6 +7,7 @@ from models.characters import Character
 from models.entity.entity import Entity
 from models.items.item import Item
 from models.items.item_types import Armour, Damager
+from models.stats import Stat
 from repositories.impl.player_repository import PlayerRepository
 from repositories.savable import Savable, Storable
 
@@ -63,8 +64,15 @@ class Player(Entity, Savable[str], Storable):
         self.current_stage = 1
         self.highest_level = 0
 
+    def set_stat(self, stat: Stat, value: int):
+        match stat:
+            case Stat.AGILITY: self.agility = value
+            case Stat.STRENGTH: self.strength = value
+            case Stat.INTELLIGENCE: self.intelligence = value
+
     def next_level(self):
         self.set_level(self.current_level + 1)
+        self.set_stage(1)
 
     def next_stage(self):
         self.set_stage(self.current_stage + 1)
