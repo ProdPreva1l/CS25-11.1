@@ -1,4 +1,5 @@
 from levels.impl.level_one import LevelOne
+from levels.impl.level_two import LevelTwo
 from levels.impl.tutorial import Tutorial
 from levels.level import Level, Staged
 from repositories.repository import ImmutableRepository
@@ -17,5 +18,12 @@ class LevelRepository(ImmutableRepository[int, Level]):
         self._register(Staged(
             1, "The Forest",
             LevelOne.StageOne(),
-
+            LevelOne.StageTwo(),
+            LevelOne.StageThree(),
+        ))
+        self._register(Staged(
+            2, "Village",
+            LevelTwo.StageOne(),
+            LevelTwo.StageTwo(),
+            LevelTwo.StageThree(),
         ))

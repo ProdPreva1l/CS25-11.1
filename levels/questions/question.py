@@ -1,10 +1,8 @@
-from abc import ABC
-
 from levels.questions import question_processors
 from levels.questions.question_type import QuestionType
 from repositories.savable import Savable
 
-class Question(Savable[str], ABC):
+class Question(Savable[str]):
     def __init__(self, question_type: QuestionType, word: str, *answers: str):
         self.question_type = question_type
         self.word = word

@@ -5,7 +5,7 @@ from openai import OpenAI, RateLimitError
 from random import shuffle, sample
 import os
 
-from openai.types.chat import ChatCompletion, ChatCompletionSystemMessageParam, ChatCompletionUserMessageParam
+from openai.types.chat import ChatCompletion
 
 _base_ai_prompt = """The word is: "%word%"
                 The inputted definition is: "%user%"
@@ -37,8 +37,9 @@ class AIHandler:
         return cls._instance
 
     def __init__(self):
-        api_key = os.getenv("AI_API_KEY")
+        api_key = os.getenv("AI_API_KEY", "DISABLED")
         if api_key == "DISABLED":
+            self.disabled = True
             return
         self.ai_client = OpenAI(
             api_key = api_key,
@@ -47,6 +48,7 @@ class AIHandler:
         thread = threading.Thread(name='ai-rate-limit-checking-thread', target=self._check_is_rate_limited)
         thread.daemon = True
         thread.start()
+        self.disabled = False
 
     def _check_is_rate_limited(self):
         while True:
@@ -66,6 +68,8 @@ class AIHandler:
             time.sleep(60)
 
     def is_rate_limited(self) -> bool:
+        if self.disabled:
+            return True
         while self._rate_limited is None:
             time.sleep(0.1)
         return self._rate_limited

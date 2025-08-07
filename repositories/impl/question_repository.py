@@ -13,7 +13,13 @@ class QuestionRepository(ImmutableRepository[str, Question]):
     def __init__(self):
         super(QuestionRepository, self).__init__()
         self._register(Question(QuestionType.CORRECT, "Paneting", "Painting"))
+        self._register(Question(QuestionType.CORRECT, "Paneting", "Painting"))
+        self._register(Question(QuestionType.CORRECT, "Emploimend", "Employment"))
+        self._register(Question(QuestionType.CORRECT, "Loyta", "Loiter"))
         self._register(Question(QuestionType.UNSCRAMBLE, "Banana"))
+        self._register(Question(QuestionType.UNSCRAMBLE, "Community"))
+        self._register(Question(QuestionType.UNSCRAMBLE, "Pasture"))
+        self._register(Question(QuestionType.UNSCRAMBLE, "Broken"))
         self._register(Question(
             QuestionType.DEFINE,
             "Radiator",
